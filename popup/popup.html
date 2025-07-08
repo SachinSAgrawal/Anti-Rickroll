@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Anti Rickroll</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <img draggable="false" src="assets/img/rickastley.png">
+      <span>Anti Rickroll</span>
+      <button id="close-btn" class="close-btn">
+        <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content home">
+        <div class="block">
+          <span>Displays a warning when you navigate to a preset list of YouTube rickrolls (and Bitly links in the future) with an optional password to continue. Features also include the ability to report the current page as a rickroll, track statistics for blocked/bypassed links, edit and copy from the preset list of links, and disable the extension.</span>
+        </div>
+        <div class="block">
+          <button id="report-rickroll-btn" class="report-btn">Report Rickroll</button>
+          <span id="report-message"></span>
+        </div>
+        <div class="block bottom">
+          <p>Originally created by <a href="https://github.com/dnorhoj/AntiRickRoll" target="_blank">Daniel Norhøj</a> <br> 
+            Forked and improved by <a href="https://sachinagrawal.me" target="_blank">Sachin Agrawal</a> <br> 
+            © 2020-2024 Licensed under GPL 3.0
+          </p>
+        </div>
+      </div>
+
+      <div class="content stats hidden">
+        <div class="block">
+          <span>Total Rickrolls Blocked:</span>
+          <span id="total-rickrolls">0</span>
+        </div>
+        <div class="block bypassed">
+          <span>Total Rickrolls Bypassed:</span>
+          <span id="total-bypassed">0</span>
+        </div>
+        <div class="block">
+          <span>Most Visited Rickrolls:</span>
+          <ul id="most-visited-urls"></ul>
+        </div>
+      </div>
+
+      <div class="content edit hidden">
+        <div class="block">
+          <span>Current Database:</span>
+          <div id="blocked-ids-container"></div>
+          <input type="text" id="new-id" placeholder="ID">
+          <button id="add-id-btn">Add</button>
+        </div>
+        <div class="block">
+          <span>Copy Random:</span>
+          <button id="copy-random-btn" class="random-btn">
+            <i class="bi bi-dice-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="content settings hidden">
+        <div class="block">
+          <label class="enable" for="toggle-extension">
+            Enable Extension:
+            <span class="info-tooltip">Whether or not the extension actively blocks rickrolls.</span>
+          </label>
+          <input type="checkbox" id="toggle-extension">
+        </div>
+        <div class="block">
+          <label class="require" for="require-password">
+            Require Password:
+            <span class="info-tooltip">Whether a password is needed to continue to the rickroll.</span>
+          </label>
+          <input type="checkbox" id="require-password">
+        </div>
+        <div class="block">
+          <input type="text" id="password-input" placeholder="Password">
+          <button id="save-password-btn">Save</button>
+        </div>
+        <div class="block hover">
+          <span>Hover over each toggle's title for more information.</span>
+        </div>
+      </div>
+
+      <div class="content rick hidden">
+        <div class="block">
+          <img draggable="false" src="assets/img/rickastley.gif">
+        </div>
+        <div class="block">
+          <span>Never gonna give you up</span>
+        </div>
+        <div class="block">
+          <span>Never gonna let you down</span>
+        </div>
+        <div class="block">
+          <span>Never gonna run around and desert you</span>
+        </div>
+        <div class="block">
+          <span>Never gonna make you cry</span>
+        </div>
+        <div class="block">
+          <span>Never gonna say goodbye</span>
+        </div>
+        <div class="block">
+          <span>Never gonna tell a lie and hurt you</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab" data-tab="home">
+        <i class="bi bi-house-fill"></i>
+        <span>Home</span>
+      </button>
+      <button class="tab" data-tab="stats">
+        <i class="bi bi-bar-chart-line-fill"></i>
+        <span>Stats</span>
+      </button>
+      <button class="tab" data-tab="edit">
+        <i class="bi bi-hdd-stack-fill"></i>
+        <span>Manage</span>
+      </button>
+      <button class="tab" data-tab="settings">
+        <i class="bi bi-gear-fill"></i>
+        <span>Settings</span>
+      </button>
+      <button class="tab" data-tab="rick">
+        <i class="bi bi-music-note-beamed"></i>
+        <span>Rick</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
