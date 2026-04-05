@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const newIdInput = document.getElementById('new-id');
   const addIdBtn = document.getElementById('add-id-btn');
   const requirePasswordCheckbox = document.getElementById('require-password');
+  const blockTitleKeywordsCheckbox = document.getElementById('block-title-keywords');
   const passwordInput = document.getElementById('password-input');
   const savePasswordBtn = document.getElementById('save-password-btn');
   const closeBtn = document.getElementById('close-btn');
@@ -47,11 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Load the current state from storage
-  chrome.storage.local.get(['extDisabled', 'totalRickRolls', 'requirePassword', 'password', 'totalBypassed', 'mostVisited'], (res) => {
+  chrome.storage.local.get(['extDisabled', 'totalRickRolls', 'requirePassword', 'blockTitleKeywords', 'password', 'totalBypassed', 'mostVisited'], (res) => {
     toggleExtension.checked = !res.extDisabled;
     totalRickrolls.textContent = res.totalRickRolls ?? 0;
     totalBypassed.textContent = res.totalBypassed ?? 0;
     requirePasswordCheckbox.checked = res.requirePassword ?? false;
+    blockTitleKeywordsCheckbox.checked = res.blockTitleKeywords ?? false;
     passwordInput.value = res.password ?? '';
     passwordInput.type = passwordInput.value ? 'password' : 'text';
     const mostVisited = res.mostVisited ?? {};
@@ -81,6 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
   requirePasswordCheckbox.addEventListener('change', () => {
     const requirePassword = requirePasswordCheckbox.checked;
     chrome.storage.local.set({ requirePassword });
+  });
+
+  // Add event listener for title keyword blocking
+  blockTitleKeywordsCheckbox.addEventListener('change', () => {
+    const blockTitleKeywords = blockTitleKeywordsCheckbox.checked;
+    chrome.storage.local.set({ blockTitleKeywords });
   });
 
   // Add event listener for saving password

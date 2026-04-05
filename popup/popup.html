@@ -27,8 +27,10 @@
 
     <div class="content-wrapper">
       <div class="content home">
-        <div class="block">
-          <span>Displays a warning when you navigate to a preset list of YouTube rickrolls (and Bitly links in the future) with an optional password to continue. Features also include the ability to report the current page as a rickroll, track statistics for blocked/bypassed links, edit and copy from the preset list of links, and disable the extension.</span>
+        <div class="block intro">
+          <span>Displays a warning when you navigate to a potential YouTube rickroll (and Bitly links in the future) with an optional password to continue.</span>
+          <span>The blocked links can either be from a preset list or dynamically detected based on if the video title contains specific keywords.</span>
+          <span>Features also include the ability to report the current page as a rickroll, track statistics for blocked/bypassed links, edit and copy from the preset list of links, and disable the extension.</span>
         </div>
         <div class="block">
           <button id="report-rickroll-btn" class="report-btn">Report Rickroll</button>
@@ -37,7 +39,7 @@
         <div class="block bottom">
           <p>Originally created by <a href="https://github.com/dnorhoj/AntiRickRoll" target="_blank">Daniel Norhøj</a> <br> 
             Forked and improved by <a href="https://sachinagrawal.me" target="_blank">Sachin Agrawal</a> <br> 
-            © 2020-2024 Licensed under GPL 3.0
+            © 2020-2026 Licensed under GPL 3.0
           </p>
         </div>
       </div>
@@ -86,6 +88,13 @@
             <span class="info-tooltip">Whether a password is needed to continue to the rickroll.</span>
           </label>
           <input type="checkbox" id="require-password">
+        </div>
+        <div class="block">
+          <label class="title-filter" for="block-title-keywords">
+            Block Keywords:
+            <span class="info-tooltip">Whether to block YouTube videos if they contain specific keywords.</span>
+          </label>
+          <input type="checkbox" id="block-title-keywords">
         </div>
         <div class="block">
           <input type="text" id="password-input" placeholder="Password">

@@ -1,4 +1,11 @@
 (() => {
+  const titleKeywords = [
+    'rick',
+    'roll',
+    'astley',
+    'never gonna give you up'
+  ];
+
   /*
   let blockedBitlyIds = [
     "3MEvBVv",
@@ -8,7 +15,7 @@
   */
 
   // Grab the storage every time in case an ID gets added while browsing (futureproofing)
-  const checkLink = () => chrome.storage.local.get(['blockedIds', 'bypassed', 'totalRickRolls', 'extDisabled', 'mostVisited'], res => {
+  const checkLink = () => chrome.storage.local.get(['blockedIds', 'bypassed', 'totalRickRolls', 'extDisabled', 'mostVisited', 'blockTitleKeywords'], res => {
     const blockedIds = res.blockedIds || [];
 
     // Check if blocking is enabled
@@ -35,19 +42,25 @@
 
     // Check if the URL contains any of the blocked IDs
     const foundId = blockedIds.find(id => currentUrl.includes(id));
+    const isYouTube = currentUrl.includes('youtube.com') || currentUrl.includes('youtu.be');
+    const currentTitle = document.title.toLowerCase();
+    const foundTitleKeyword = (res.blockTitleKeywords && isYouTube)
+      ? titleKeywords.find(keyword => currentTitle.includes(keyword))
+      : null;
+    const foundMatch = foundId || foundTitleKeyword;
 
     // Save it and continue with the rest of the logic
-    if (foundId) {
+    if (foundMatch) {
       // If not bypassed (user clicked continue), show warning page
       if (!res.bypassed) {
         // Check if the array of blocked URLs exists or not and update it
         if (res.mostVisited) {
           const mostVisitedArray = res.mostVisited;
-          mostVisitedArray.push(foundId);
+          mostVisitedArray.push(foundId || `title:${foundTitleKeyword}`);
           chrome.storage.local.set({ "mostVisited" : mostVisitedArray });
         } else {
           const mostVisitedArray = [];
-          mostVisitedArray.push(foundId);
+          mostVisitedArray.push(foundId || `title:${foundTitleKeyword}`);
           chrome.storage.local.set({ "mostVisited" : mostVisitedArray });
         }
 
@@ -67,6 +80,8 @@
 
   // Hook into the Youtube navigation event
   addEventListener('yt-navigate-start', checkLink);
+  addEventListener('yt-navigate-finish', checkLink);
+  addEventListener('load', checkLink);
 
   /*
   // Check for Bitly links on page load and whenever the URL changes

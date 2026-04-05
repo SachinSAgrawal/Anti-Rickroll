@@ -11,14 +11,14 @@ As mentioned above, this extension was originally created by [Daniel Norhøj](ht
 ## Changes
 * Working database of rickroll links (not fully global: others can’t add to yours, but you can edit it manually)
 * Optional password to continue to the rickroll (added after my friends Rickrolled me on my own computer)
-* The popup now uses purely HTML, CSS, and JS (no more Svelte, so it’s easier to understand)
+* Improved popup with a button to close it and bonus page with Rick and lyrics
+* Pure HTML, CSS, and JS code (no more Svelte, so it’s easier to understand)
 * Working stats page tracks number of rickrolls blocked/bypassed and most common links
 * Ability to copy the full URL of any video or a random one from the database 
 * One-click button to add a link to your personal database
-* Clear indication when the extension is off
-* Added a quick button to close the popup
-* Bonus popup page with Rick and lyrics
-* Modernized warning page design
+* Clear indication when the extension is turned off
+* Modernized warning page design with an improved description
+* New: ability to block all videos whose title contains specific keywords
 
 ## Installation
 1. Clone this repository or download it as a zip folder and uncompress it.

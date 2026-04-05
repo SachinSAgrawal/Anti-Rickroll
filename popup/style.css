@@ -41,7 +41,7 @@ body {
 
 .bottom {
   font-size: 10px;
-  padding-top: 149px;
+  padding-top: 79px;
 }
 
 a {
@@ -50,6 +50,11 @@ a {
 
 a:hover {
 	color: #1d57a2
+}
+
+.intro span {
+  margin-bottom: 6px;
+  display: block;
 }
 
 .block input[type="checkbox"] {
@@ -184,8 +189,9 @@ li {
   width: 300px;
 }
 
-#require-password {
-  margin-top: 4px;
+#require-password,
+#block-title-keywords {
+  margin-top: 6px;
 }
 
 #add-id-btn, #save-password-btn, .icon-btn, .report-btn {
@@ -202,8 +208,7 @@ li {
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: 82.6%;
-  left: 3%;
+  left: 10px;
   opacity: 0;
   transition: opacity 0.2s;
   font-size: 10px;
@@ -212,12 +217,19 @@ li {
 .enable:hover .info-tooltip {
   visibility: visible;
   opacity: 1;
+  bottom: 83%;
 }
 
 .require:hover .info-tooltip {
   visibility: visible;
   opacity: 1;
-  bottom: 78%;
+  bottom: 78.5%;
+}
+
+.title-filter:hover .info-tooltip {
+  visibility: visible;
+  opacity: 1;
+  bottom: 74%;
 }
 
 .hover {
