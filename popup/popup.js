@@ -15,7 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const reportMessage = document.getElementById('report-message');
   const mostVisitedList = document.getElementById('most-visited-urls');
 
-  chrome.action.setBadgeBackgroundColor({ color: "#e65046" });
+  function updateBadge(extDisabled, blockTitleKeywords) {
+    if (extDisabled) {
+      chrome.action.setBadgeBackgroundColor({ color: '#e65046' });
+      chrome.action.setBadgeText({ text: 'off' });
+      return;
+    }
+
+    if (blockTitleKeywords) {
+      chrome.action.setBadgeBackgroundColor({ color: '#78b354' });
+      chrome.action.setBadgeText({ text: 'all' });
+      return;
+    }
+
+    chrome.action.setBadgeBackgroundColor({ color: '#888888' });
+    chrome.action.setBadgeText({ text: '' });
+  }
 
   const defaultBlockedIds = [
     "dQw4w9WgXcQ",
@@ -63,20 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {});
     const sortedUrls = Object.entries(urlCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
     mostVisitedList.innerHTML = sortedUrls.map(([url, count]) => `<li>${url}(${count}x)</li>`).join('');
-    if (res.extDisabled) { 
-      chrome.action.setBadgeText({ text: "off" }); 
-    }
+    updateBadge(res.extDisabled ?? false, res.blockTitleKeywords ?? false);
   });
 
   // Add event listener for the toggle
   toggleExtension.addEventListener('change', () => {
     const extDisabled = !toggleExtension.checked;
     chrome.storage.local.set({ extDisabled });
-    if (extDisabled) { 
-      chrome.action.setBadgeText({ text: "off" }); 
-    } else { 
-      chrome.action.setBadgeText({ text: "" }); 
-    }
+    updateBadge(extDisabled, blockTitleKeywordsCheckbox.checked);
   });
 
   // Add event listener for requiring password
@@ -89,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   blockTitleKeywordsCheckbox.addEventListener('change', () => {
     const blockTitleKeywords = blockTitleKeywordsCheckbox.checked;
     chrome.storage.local.set({ blockTitleKeywords });
+    updateBadge(!toggleExtension.checked, blockTitleKeywords);
   });
 
   // Add event listener for saving password
