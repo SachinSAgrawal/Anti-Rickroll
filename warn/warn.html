@@ -17,13 +17,20 @@
       <div class="icon"></div>
       <div>
         <h1>You're about to get rickrolled</h1>
-        <p>You clicked on a Youtube or Bitly link that redirects to the music video for Rick Astley's 1987 hit song <strong>Never Gonna Give You Up</strong>!<br>
+        <p>You clicked on a <span id="blocked-source"></span>link that redirects to the music video for Rick Astley's 1987 hit song <strong>Never Gonna Give You Up</strong>!<br>
         <div class="error-code">extension::BLOCKED_BY_ANTIRICKROLL</div>
       </div>
     </div>
     <div class="nav-wrapper">
       <button id="back-btn">Back to safety</button>
       <button id="continue-btn" class="secondary-button">Continue</button>
+    </div>
+    <div id="password-panel" class="password-panel" hidden>
+      <label for="password-field">Enter password to continue</label>
+      <div class="password-row">
+        <input id="password-field" type="password" autocomplete="current-password" spellcheck="false" />
+      </div>
+      <div id="password-error" class="password-error" aria-live="polite"></div>
     </div>
   </div>
 </body>

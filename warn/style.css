@@ -77,6 +77,43 @@ h1 {
   margin-top: 40px;
 }
 
+.password-panel {
+  margin-top: 32px;
+}
+
+.password-panel label {
+  display: block;
+  color: rgb(32, 33, 36);
+  font-size: .95em;
+  margin-bottom: 10px;
+}
+
+.password-row {
+  display: block;
+}
+
+.password-row input {
+  width: 100%;
+  border: 1px solid rgb(154, 160, 166);
+  border-radius: 20px;
+  font-size: .95em;
+  padding: 10px 16px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.password-row input:focus {
+  outline: 2px solid rgb(26, 115, 232);
+  outline-offset: 1px;
+}
+
+.password-error {
+  color: #b3261e;
+  font-size: .85em;
+  margin-top: 10px;
+  min-height: 1em;
+}
+
 .icon {
   height: 72px;
   margin: 0 0 40px;
@@ -108,5 +145,20 @@ h1 {
 
   h1 {
     color: var(--google-gray-dark);
+  }
+
+  .password-panel label {
+    color: var(--google-gray-dark);
+  }
+
+  .password-row input {
+    width: 100%;
+    background: #202124;
+    color: var(--google-gray-dark);
+    border-color: rgb(95, 99, 104);
+  }
+
+  .password-error {
+    color: rgb(242, 139, 130);
   }
 }

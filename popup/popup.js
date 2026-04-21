@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const reportMessage = document.getElementById('report-message');
   const mostVisitedList = document.getElementById('most-visited-urls');
 
+  // Function to update the extension badge based on the current settings
   function updateBadge(extDisabled, blockTitleKeywords) {
     if (extDisabled) {
       chrome.action.setBadgeBackgroundColor({ color: '#e65046' });
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.action.setBadgeText({ text: '' });
   }
 
+  // Default list of blocked IDs (can be modified by the user)
   const defaultBlockedIds = [
     "dQw4w9WgXcQ",
     "34Ig3X59_qA",
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.tab');
   const contents = document.querySelectorAll('.content');
 
+  // Add event listeners for tab switching
   tabs.forEach(tab => {
     tab.addEventListener('click', function () {
       tabs.forEach(t => t.classList.remove('active'));

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Anti Rickroll",
-  "description": "Displays a warning when you navigate to a potential YouTube rickroll with an optional password to continue.",
+  "description": "Displays a warning when you navigate to a potential YouTube or Bitly rickroll with an optional password to continue.",
   "version": "1.0",
   "content_scripts": [
     {
